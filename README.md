@@ -1,0 +1,164 @@
+# Adaptrix Junior Developer Challenge
+
+## Entity Extraction Pipeline Basics
+
+**Time Limit:** 30 minutes  
+**Difficulty:** Junior  
+**AI Assistance:** Allowed (and encouraged!)
+
+---
+
+## Challenge Overview
+
+Build a simplified entity extraction system that:
+1. Reads a DOCX document containing a business operations report
+2. Converts it to PDF format
+3. Uses an LLM API to extract key entities (KPIs, dates, organizations)
+4. Outputs structured JSON matching the provided template
+
+---
+
+## Deliverables
+
+1. **`src/extract_entities.py`** - Your main extraction script
+2. **`output/entities.json`** - Your extraction results
+3. **Brief README update** - 3-5 sentences explaining your approach (add at bottom of this file)
+
+---
+
+## Requirements
+
+### Technical Requirements
+- Python 3.10+
+- An LLM API key (OpenAI, Anthropic, or similar)
+- The extracted entities must include confidence scores
+
+### Entity Types to Extract
+1. **KPIs** - Business metrics with values and units (e.g., "OEE 78.5%", "Return Rate 24.96%")
+2. **Dates** - Time references (e.g., "Week 45", "November 6-12")
+3. **Organizations** - Company names and references
+
+---
+
+## Getting Started
+
+1. Clone this repository
+2. Follow [SETUP.md](SETUP.md) to configure your environment
+3. Review the input document: `input/gearhead_weekly_report.docx`
+4. Review the output template: `output/entities.json.template`
+5. Complete `src/extract_entities.py`
+6. Run your solution and save output to `output/entities.json`
+
+---
+
+## Input Document
+
+The input document (`input/gearhead_weekly_report.docx`) is a weekly operations summary from **Gearhead Cycles**, a bicycle manufacturing company.
+
+Key content includes:
+- Production metrics for Week 45, FY2023
+- Critical KPIs: OEE, On-Time Delivery (OTD), Return Rate
+- Target vs actual performance analysis
+
+**Note:** Upload the `.doc` file using the helper module provided.
+
+---
+
+## Helper Modules
+
+Two helper modules are provided in `src/helpers/`:
+
+### `docx_helper.py`
+Extracts text content from DOCX files.
+
+```python
+from helpers.docx_helper import extract_text_from_docx
+
+text = extract_text_from_docx("input/gearhead_weekly_report.docx")
+```
+
+### `pdf_converter.py`
+Converts DOCX to PDF (requires the document to be processed).
+
+```python
+from helpers.pdf_converter import convert_to_pdf
+
+pdf_path = await convert_to_pdf("input/gearhead_weekly_report.docx")
+```
+
+---
+
+## Output Format
+
+Your output must match this structure (see `output/entities.json.template`):
+
+```json
+{
+  "document": {
+    "filename": "gearhead_weekly_report.docx",
+    "extraction_timestamp": "2024-01-20T12:00:00Z"
+  },
+  "entities": {
+    "kpis": [
+      {
+        "name": "OEE",
+        "value": 78.5,
+        "unit": "%",
+        "context": "Overall Equipment Effectiveness",
+        "confidence": 0.95
+      }
+    ],
+    "dates": [...],
+    "organizations": [...]
+  },
+  "statistics": {
+    "total_entities": 12,
+    "kpi_count": 4,
+    "date_count": 3,
+    "org_count": 2
+  }
+}
+```
+
+---
+
+## Evaluation Criteria
+
+| Criterion | Weight | Description |
+|-----------|--------|-------------|
+| Correct Entity Extraction | 30% | KPIs, dates, organizations extracted correctly |
+| Code Quality | 25% | Clean, readable, follows Python conventions |
+| Error Handling | 20% | Handles file errors, invalid data gracefully |
+| Output Format Compliance | 15% | JSON matches template structure exactly |
+| Bug Fixes | 10% | Identifies and fixes bugs in provided helper code |
+
+---
+
+## Architectural Improvements (Bonus)
+
+Consider implementing:
+- Error handling with try/except blocks
+- Basic logging with timestamps
+- Type hints on functions
+- Docstrings for documentation
+- Configuration externalization
+
+---
+
+## Submission
+
+1. Ensure `output/entities.json` contains your results
+2. Add a brief explanation of your approach at the bottom of this README
+3. Push your changes to your fork or send as a zip file
+
+---
+
+## Your Approach (Complete This Section)
+
+<!-- 
+Add 3-5 sentences explaining:
+1. Which LLM API you used
+2. Your extraction strategy
+3. Any challenges you encountered
+4. Bugs you found and fixed
+-->
