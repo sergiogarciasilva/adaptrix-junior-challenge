@@ -1,0 +1,37 @@
+{
+  "document": {
+    "filename": "",
+    "extraction_timestamp": ""
+  },
+  "entities": {
+    "kpis": [
+      {
+        "name": "",
+        "value": null,
+        "unit": "",
+        "context": "",
+        "confidence": 0.0
+      }
+    ],
+    "dates": [
+      {
+        "text": "",
+        "type": "",
+        "confidence": 0.0
+      }
+    ],
+    "organizations": [
+      {
+        "name": "",
+        "type": "",
+        "confidence": 0.0
+      }
+    ]
+  },
+  "statistics": {
+    "total_entities": 0,
+    "kpi_count": 0,
+    "date_count": 0,
+    "org_count": 0
+  }
+}
